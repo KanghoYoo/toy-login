@@ -16,33 +16,28 @@ const Background = styled.div`
 `;
 
 const Container = styled.div`
-  position: absolute;
+  position: absolute; // 위치 지정
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #ffffff;
   width: 1000px;
   height: 600px;
-  background-color: white;
   border-radius: 12px;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   box-shadow: 0 17px 20px -18px rgba(0, 0, 0, 1);
 `;
 
 const LoginImg = styled.div`
+  flex: 1;
   background: linear-gradient(12deg, #4e68fc 20%, #88a0ff 0%);
-  background: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 50%;
   border-radius: 12px 0px 0px 12px;
-  text-align: center;
-  margin: 0 auto;
 `;
 
 const IntroContents = styled.p`
+  color: white;
   margin: 50px 50px 0px 0px;
-  color: #ffffff;
   font-weight: 700;
   font-size: 80px;
   border-radius: 0px 12px 12px 0px;
@@ -50,13 +45,19 @@ const IntroContents = styled.p`
 `;
 
 const LoginContainer = styled.div`
-  width: 50%;
+  flex: 1;
+  display: flex;
+  background-color: #ffffff;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ContentTitle = styled.p`
-  height: 50px;
+  width: 100%;
+  height: 100px;
   margin-top: 0;
-  padding: 20px 0px 30px 50px;
+  padding: 20px 0px 0px 50px;
+  box-sizing: border-box;
   background-color: #4e68fc;
   color: white;
   font-size: 60px;
@@ -66,17 +67,19 @@ const ContentTitle = styled.p`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
+  height: 100px;
 `;
 
 const Label = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   margin-bottom: 15px;
 `;
 
 const InputId = styled.input`
+  font-size: 14px;
   margin-left: 10px;
   width: 300px;
   height: 30px;
@@ -89,6 +92,7 @@ const InputId = styled.input`
 `;
 
 const InputPw = styled.input`
+  font-size: 14px;
   margin-left: 10px;
   width: 300px;
   height: 30px;
@@ -100,25 +104,44 @@ const InputPw = styled.input`
   }
 `;
 
-const AutoCheckBox = styled.input`
-  margin-right: 5px;
+const TextBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+  width: 400px;
+  Label {
+    width: 150px;
+  }
 `;
 
-const PasswordFind = styled.span`
-  font-size: 14px;
+const AutoCheckBox = styled.input`
+  font-size: 16px;
   text-decoration: none;
 `;
 
-const BtnWrapper = styled.div`
-  width: auto;
-  margin: 0px 40px;
+const PasswordFind = styled.a`
+  font-size: 16px;
+  text-decoration: none;
+  width: 150px;
+  color: black;
 `;
+
+const BtnWrapper = styled.div`
+  margin-top: 30px;
+`;
+
 const SignUpBtn = styled.button`
   margin: 10px;
   width: 195px;
   height: 50px;
+  background-color: #eaeaea;
   border: none;
   border-radius: 8px;
+  :hover {
+    background-color: #dddddd;
+    cursor: pointer;
+  }
 `;
 
 const LoginBtn = styled.button`
@@ -128,7 +151,12 @@ const LoginBtn = styled.button`
   background-color: #88a0ff;
   border: none;
   border-radius: 8px;
+  :hover {
+    background-color: #7691ff;
+    cursor: pointer;
+  }
 `;
+
 function Login() {
   return (
     <Background>
@@ -148,13 +176,14 @@ function Login() {
               <InputPw type="password" placeholder="password"></InputPw>
             </Label>
           </InputWrapper>
-          <></>
-          <Label>
-            <AutoCheckBox type="checkbox" name="xxx" value="yyy" />
-            Remember Me
-            {" / "}
-            <PasswordFind>Find My Password</PasswordFind>
-          </Label>
+          <TextBox>
+            <Label>
+              <AutoCheckBox type="checkbox" name="xxx" value="yyy" />
+              &nbsp;Remember Me
+            </Label>
+            {"/"}
+            <PasswordFind href="">Find My Password</PasswordFind>
+          </TextBox>
           <BtnWrapper>
             <SignUpBtn type="button">Sign Up</SignUpBtn>
             <LoginBtn type="button">Login</LoginBtn>
