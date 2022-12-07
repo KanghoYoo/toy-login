@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -20,20 +20,24 @@ function Login() {
             </Label>
             <Label>
               <FontAwesomeIcon icon={faLock} />
-              <InputPw type="password" placeholder="password"></InputPw>
+              <InputPw type="password" placeholder="Password"></InputPw>
             </Label>
           </FormWrapper>
           <TextWrapper>
             <Label>
               <RememberCheckBox type="checkbox" name="xxx" value="yyy" />
-              &nbsp;Remember Me
+              Remember Me
             </Label>
             {"/"}
             <PasswordFind href="">Forgot Password?</PasswordFind>
           </TextWrapper>
           <ButtonWrapper>
-            <SignUpBtn type="button">Sign Up</SignUpBtn>
-            <LoginBtn type="button">Login</LoginBtn>
+            <SignUpBtn type="button" color="#eaeaea">
+              Sign Up
+            </SignUpBtn>
+            <LoginBtn type="button" color="#88a0ff">
+              Login
+            </LoginBtn>
           </ButtonWrapper>
         </LoginContainer>
       </Container>
@@ -41,22 +45,52 @@ function Login() {
   );
 }
 
+const FlexRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  font-size: 14px;
+  margin-left: 10px;
+  width: 300px;
+  height: 30px;
+  border: none;
+  border-bottom: 2px solid #88a0ff;
+  :focus {
+    outline: none;
+    border-bottom: 4px solid #4e68fc;
+  }
+`;
+
+const Button = styled.button`
+  margin: 10px;
+  width: 195px;
+  height: 50px;
+  background-color: ${(props) => props.color};
+  border: none;
+  border-radius: 8px;
+`;
+
 const Background = styled.div`
   height: 100vh;
   background-color: #f8f8f8;
 `;
 
-const Container = styled.div`
+const Container = styled(FlexRow)`
   position: absolute; // 위치 지정
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
   width: 1000px;
   height: 600px;
+  background-color: #ffffff;
   border-radius: 12px;
-  display: flex;
-  flex-direction: row;
   box-shadow: 0 17px 20px -18px rgba(0, 0, 0, 1);
 `;
 
@@ -66,7 +100,7 @@ const LoginImg = styled.div`
   border-radius: 12px 0px 0px 12px;
 `;
 
-const IntroContents = styled.p`
+const IntroContents = styled.h1`
   color: white;
   margin: 50px 50px 0px 0px;
   font-weight: 700;
@@ -75,11 +109,9 @@ const IntroContents = styled.p`
   text-align: right;
 `;
 
-const LoginContainer = styled.div`
+const LoginContainer = styled(FlexColumn)`
   flex: 1;
-  display: flex;
   background-color: #ffffff;
-  flex-direction: column;
   align-items: center;
 `;
 
@@ -109,44 +141,22 @@ const Label = styled.label`
   margin-bottom: 15px;
 `;
 
-const InputId = styled.input`
-  font-size: 14px;
-  margin-left: 10px;
-  width: 300px;
-  height: 30px;
-  border: none;
-  border-bottom: 2px solid #88a0ff;
-  :focus {
-    outline: none;
-    border-bottom: 4px solid #4e68fc;
-  }
-`;
+const InputId = styled(Input)``;
 
-const InputPw = styled.input`
-  font-size: 14px;
-  margin-left: 10px;
-  width: 300px;
-  height: 30px;
-  border: none;
-  border-bottom: 2px solid #88a0ff;
-  :focus {
-    outline: none;
-    border-bottom: 4px solid #4e68fc;
-  }
-`;
+const InputPw = styled(Input)``;
 
-const TextWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
+const TextWrapper = styled(FlexRow)`
   justify-content: space-around;
   margin-top: 10px;
   width: 400px;
+
   Label {
     width: 150px;
   }
 `;
 
 const RememberCheckBox = styled.input`
+  margin-right: 5px;
   font-size: 16px;
   text-decoration: none;
 `;
@@ -162,26 +172,14 @@ const ButtonWrapper = styled.div`
   margin-top: 30px;
 `;
 
-const SignUpBtn = styled.button`
-  margin: 10px;
-  width: 195px;
-  height: 50px;
-  background-color: #eaeaea;
-  border: none;
-  border-radius: 8px;
+const SignUpBtn = styled(Button)`
   :hover {
     background-color: #dddddd;
     cursor: pointer;
   }
 `;
 
-const LoginBtn = styled.button`
-  margin: 1px;
-  width: 195px;
-  height: 50px;
-  background-color: #88a0ff;
-  border: none;
-  border-radius: 8px;
+const LoginBtn = styled(Button)`
   :hover {
     background-color: #7691ff;
     cursor: pointer;
