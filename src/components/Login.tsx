@@ -5,6 +5,30 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
+  const [userId, setUserId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserId(String(e.target.value));
+  };
+
+  const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const isValid = () => {
+    const emailRegex =
+      /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    const passWordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+    return emailRegex.test(userId)
+      ? passWordRegex.test(password)
+        ? window.alert("로그인이 되었습니다.")
+        : window.alert("비밀번호를 확인해주세요.")
+      : window.alert("이메일 형식을 확인해주세요!");
+  };
+
   return (
     <Background>
       <Container>
@@ -16,11 +40,19 @@ function Login() {
           <FormWrapper>
             <Label>
               <FontAwesomeIcon icon={faUser} />
-              <InputId type="email" placeholder="Username"></InputId>
+              <InputId
+                type="email"
+                onChange={onChangeId}
+                placeholder="Username"
+              ></InputId>
             </Label>
             <Label>
               <FontAwesomeIcon icon={faLock} />
-              <InputPw type="password" placeholder="Password"></InputPw>
+              <InputPw
+                type="password"
+                onChange={onChangePw}
+                placeholder="Password"
+              ></InputPw>
             </Label>
           </FormWrapper>
           <TextWrapper>
@@ -35,7 +67,7 @@ function Login() {
             <SignUpBtn type="button" color="#eaeaea">
               Sign Up
             </SignUpBtn>
-            <LoginBtn type="button" color="#88a0ff">
+            <LoginBtn type="button" onClick={isValid} color="#88a0ff">
               Login
             </LoginBtn>
           </ButtonWrapper>
@@ -187,3 +219,6 @@ const LoginBtn = styled(Button)`
 `;
 
 export default Login;
+function useInput(arg0: string): [any, any] {
+  throw new Error("Function not implemented.");
+}
