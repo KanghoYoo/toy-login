@@ -4,15 +4,46 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 
+function Login() {
+  return (
+    <Background>
+      <Container>
+        <LoginImg>
+          <IntroContents>Welcom To My Page!</IntroContents>
+        </LoginImg>
+        <LoginContainer>
+          <ContentTitle>Sign In</ContentTitle>
+          <FormWrapper>
+            <Label>
+              <FontAwesomeIcon icon={faUser} />
+              <InputId type="email" placeholder="Username"></InputId>
+            </Label>
+            <Label>
+              <FontAwesomeIcon icon={faLock} />
+              <InputPw type="password" placeholder="password"></InputPw>
+            </Label>
+          </FormWrapper>
+          <TextWrapper>
+            <Label>
+              <RememberCheckBox type="checkbox" name="xxx" value="yyy" />
+              &nbsp;Remember Me
+            </Label>
+            {"/"}
+            <PasswordFind href="">Forgot Password?</PasswordFind>
+          </TextWrapper>
+          <ButtonWrapper>
+            <SignUpBtn type="button">Sign Up</SignUpBtn>
+            <LoginBtn type="button">Login</LoginBtn>
+          </ButtonWrapper>
+        </LoginContainer>
+      </Container>
+    </Background>
+  );
+}
+
 const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
   height: 100vh;
   background-color: #f8f8f8;
-  background-size: cover;
 `;
 
 const Container = styled.div`
@@ -64,7 +95,7 @@ const ContentTitle = styled.p`
   border-radius: 0px 12px 0px 0px;
 `;
 
-const InputWrapper = styled.div`
+const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   margin-top: 50px;
@@ -104,7 +135,7 @@ const InputPw = styled.input`
   }
 `;
 
-const TextBox = styled.div`
+const TextWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -115,7 +146,7 @@ const TextBox = styled.div`
   }
 `;
 
-const AutoCheckBox = styled.input`
+const RememberCheckBox = styled.input`
   font-size: 16px;
   text-decoration: none;
 `;
@@ -127,7 +158,7 @@ const PasswordFind = styled.a`
   color: black;
 `;
 
-const BtnWrapper = styled.div`
+const ButtonWrapper = styled.div`
   margin-top: 30px;
 `;
 
@@ -156,42 +187,5 @@ const LoginBtn = styled.button`
     cursor: pointer;
   }
 `;
-
-function Login() {
-  return (
-    <Background>
-      <Container>
-        <LoginImg>
-          <IntroContents>Welcom To My Page!</IntroContents>
-        </LoginImg>
-        <LoginContainer>
-          <ContentTitle>Sign In</ContentTitle>
-          <InputWrapper>
-            <Label>
-              <FontAwesomeIcon icon={faUser} />
-              <InputId type="email" placeholder="email"></InputId>
-            </Label>
-            <Label>
-              <FontAwesomeIcon icon={faLock} />
-              <InputPw type="password" placeholder="password"></InputPw>
-            </Label>
-          </InputWrapper>
-          <TextBox>
-            <Label>
-              <AutoCheckBox type="checkbox" name="xxx" value="yyy" />
-              &nbsp;Remember Me
-            </Label>
-            {"/"}
-            <PasswordFind href="">Find My Password</PasswordFind>
-          </TextBox>
-          <BtnWrapper>
-            <SignUpBtn type="button">Sign Up</SignUpBtn>
-            <LoginBtn type="button">Login</LoginBtn>
-          </BtnWrapper>
-        </LoginContainer>
-      </Container>
-    </Background>
-  );
-}
 
 export default Login;
