@@ -3,10 +3,13 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [userId, setUserId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(String(e.target.value));
@@ -16,6 +19,9 @@ function Login() {
     setPassword(e.target.value);
   };
 
+  const onClickSignUp = () => {
+    navigate(`/signup`);
+  };
   const isValid = () => {
     const emailRegex =
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
@@ -61,10 +67,10 @@ function Login() {
               Remember Me
             </Label>
             {"/"}
-            <PasswordFind href="">Forgot Password?</PasswordFind>
+            <PasswordFind to="/findpassword">Forgot Password?</PasswordFind>
           </TextWrapper>
           <ButtonWrapper>
-            <SignUpBtn type="button" color="#eaeaea">
+            <SignUpBtn type="button" onClick={onClickSignUp} color="#eaeaea">
               Sign Up
             </SignUpBtn>
             <LoginBtn type="button" onClick={isValid} color="#88a0ff">
@@ -193,7 +199,7 @@ const RememberCheckBox = styled.input`
   text-decoration: none;
 `;
 
-const PasswordFind = styled.a`
+const PasswordFind = styled(Link)`
   font-size: 16px;
   text-decoration: none;
   width: 150px;
@@ -219,6 +225,3 @@ const LoginBtn = styled(Button)`
 `;
 
 export default Login;
-function useInput(arg0: string): [any, any] {
-  throw new Error("Function not implemented.");
-}
